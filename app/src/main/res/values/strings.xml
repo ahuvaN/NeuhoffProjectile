@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">NeuhoffProjectile</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="angle">angle</string>
+    <string name="velocity">velocity</string>
+    <string name="time">time</string>
+    <string name="calculate">calculate</string>
+    <string name="result">result</string>
+</resources>
