@@ -5,7 +5,11 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
+<<<<<<< HEAD
         applicationId "neuhoff.projectile"
+=======
+        applicationId "neuhoff.physics.myapplication"
+>>>>>>> 2a738acf9bdf538d60f312ead47345808a4aed74
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1

@@ -1,4 +1,5 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">NeuhoffProjectile</string>
 
     <string name="action_settings">Settings</string>
@@ -7,4 +8,10 @@
     <string name="time">time</string>
     <string name="calculate">calculate</string>
     <string name="result">result</string>
+=======
+    <string name="app_name">My Application</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+>>>>>>> 2a738acf9bdf538d60f312ead47345808a4aed74
 </resources>
