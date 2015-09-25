@@ -9,7 +9,8 @@
     tools:context=".NeuhoffProjectile"
     android:orientation="vertical">
 
-    <TextView android:text="@string/angle" android:layout_width="61dp"
+    <TextView android:text="@string/angle"
+        android:layout_width="61dp"
         android:layout_height="wrap_content"
         android:id="@+id/angle" />
     <EditText
