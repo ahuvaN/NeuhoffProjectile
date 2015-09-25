@@ -8,5 +8,6 @@
     <string name="time">time</string>
     <string name="calculate">calculate</string>
     <string name="result">result</string>
+    <string name="InvalidData">Invalid Data</string>
 
 </resources>

@@ -7,13 +7,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 public class NeuhoffProjectile extends AppCompatActivity {
 
     private TextView angle, velocity, time, result;
     private EditText edit_angle, edit_velocity, edit_time;
     private Button calculate;
+    private ImageView image;
     private double angleVar, velocityVar, timeVar, radians, getX, getY;
     private StringBuilder string ;
 
@@ -22,33 +26,46 @@ public class NeuhoffProjectile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        angle = (TextView) findViewById(R.id.angle);
-        velocity = (TextView) findViewById(R.id.velocity);
-        time = (TextView) findViewById(R.id.time);
-        calculate = (Button) findViewById(R.id.calculate);
-        result = (TextView) findViewById(R.id.result);
-        edit_angle = (EditText) findViewById(R.id.edit_angle);
-        edit_velocity = (EditText) findViewById(R.id.edit_velocity);
-        edit_time = (EditText) findViewById(R.id.edit_time);
 
-        calculate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                angleVar = Double.parseDouble(edit_angle.getText().toString());
-                velocityVar = Double.parseDouble(edit_velocity.getText().toString());
-                timeVar = Double.parseDouble(edit_time.getText().toString());
-                radians = Math.toRadians(angleVar);
-                getX = Math.sin(radians) * velocityVar * timeVar;
-                getY = Math.cos(radians) * velocityVar * timeVar - (.5 * 9.8 * timeVar * timeVar);
+        Picasso.with(this).load("http://i.imgur.com/DvpvklR.png").into(image);
 
-                string = new StringBuilder();
-                string.append("x= ");
-                string.append(getX);
-                string.append("\ny= ");
-                string.append(getY);
-                result.setText(string.toString());
-            }
-        });
+            angle = (TextView) findViewById(R.id.angle);
+            velocity = (TextView) findViewById(R.id.velocity);
+            time = (TextView) findViewById(R.id.time);
+            calculate = (Button) findViewById(R.id.calculate);
+            result = (TextView) findViewById(R.id.result);
+            edit_angle = (EditText) findViewById(R.id.edit_angle);
+            edit_velocity = (EditText) findViewById(R.id.edit_velocity);
+            edit_time = (EditText) findViewById(R.id.edit_time);
+            //how to add an image view
+
+            calculate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    try {
+                        angleVar = Double.parseDouble(edit_angle.getText().toString());
+                        velocityVar = Double.parseDouble(edit_velocity.getText().toString());
+                        timeVar = Double.parseDouble(edit_time.getText().toString());
+                    }
+                    catch(NumberFormatException e){
+                        angleVar = 0.0;
+                        velocityVar = 0.0;
+                        timeVar = 0.0;
+                    }
+                    radians = Math.toRadians(angleVar);
+                    getX = Math.sin(radians) * velocityVar * timeVar;
+                    getY = Math.cos(radians) * velocityVar * timeVar - (.5 * 9.8 * timeVar * timeVar);
+
+                    string = new StringBuilder();
+                    string.append("x= ");
+                    string.append(getX);
+                    string.append("\ny= ");
+                    string.append(getY);
+                    result.setText(string.toString());
+                }
+            });
+
 
     }
     @Override
