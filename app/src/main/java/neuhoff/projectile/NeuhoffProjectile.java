@@ -27,8 +27,10 @@ public class NeuhoffProjectile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Picasso.with(this).load("http://i.imgur.com/DvpvklR.png").into(image);
-
+            image = (ImageView) findViewById(R.id.image);
+            Picasso.with(this)
+                    .load("http://physicsinbaseballl.weebly.com/uploads/1/5/2/3/15231458/3075613.jpg?525")
+                    .into(image);
             angle = (TextView) findViewById(R.id.angle);
             velocity = (TextView) findViewById(R.id.velocity);
             time = (TextView) findViewById(R.id.time);
@@ -37,7 +39,7 @@ public class NeuhoffProjectile extends AppCompatActivity {
             edit_angle = (EditText) findViewById(R.id.edit_angle);
             edit_velocity = (EditText) findViewById(R.id.edit_velocity);
             edit_time = (EditText) findViewById(R.id.edit_time);
-            //how to add an image view
+
 
             calculate.setOnClickListener(new View.OnClickListener() {
                 @Override
