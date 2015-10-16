@@ -1,5 +1,6 @@
 package neuhoff.projectile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -18,9 +19,6 @@ public class NeuhoffProjectile extends AppCompatActivity {
     private EditText edit_angle, edit_velocity, edit_time;
     private Button calculate;
     private ImageView image;
-    private double angleVar, velocityVar, timeVar, radians, getX, getY;
-    private StringBuilder string ;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +27,7 @@ public class NeuhoffProjectile extends AppCompatActivity {
 
             image = (ImageView) findViewById(R.id.image);
             Picasso.with(this)
-                    .load("http://physicsinbaseballl.weebly.com/uploads/1/5/2/3/15231458/3075613.jpg?525")
+                    .load("http://www.shawneekscvb.com/pages/images/542191Baseball.jpg")
                     .into(image);
             angle = (TextView) findViewById(R.id.angle);
             velocity = (TextView) findViewById(R.id.velocity);
@@ -45,38 +43,29 @@ public class NeuhoffProjectile extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    try {
-                        angleVar = Double.parseDouble(edit_angle.getText().toString());
-                        velocityVar = Double.parseDouble(edit_velocity.getText().toString());
-                        timeVar = Double.parseDouble(edit_time.getText().toString());
-                    }
-                    catch(NumberFormatException e){
-                        angleVar = 0.0;
-                        velocityVar = 0.0;
-                        timeVar = 0.0;
-                    }
-                    radians = Math.toRadians(angleVar);
-                    getX = Math.sin(radians) * velocityVar * timeVar;
-                    getY = Math.cos(radians) * velocityVar * timeVar - (.5 * 9.8 * timeVar * timeVar);
-
-                    string = new StringBuilder();
-                    string.append("x= ");
-                    string.append(getX);
-                    string.append("\ny= ");
-                    string.append(getY);
-                    result.setText(string.toString());
+                    Intent intent;
+                    showAnswer();
                 }
             });
 
 
     }
+
+    private void showAnswer() {
+        Intent intent = new Intent(this, AnswerActivity.class);
+        double angle = Double.parseDouble(edit_angle.getText().toString());
+        double velocity = Double.parseDouble(edit_velocity.getText().toString());
+        double time = Double.parseDouble(edit_time.getText().toString());
+        intent.putExtra("Angle", angle);
+        intent.putExtra("Velocity", velocity);
+        intent.putExtra("Time", time);
+        startActivity(intent);
+
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-        radians = Math.toRadians(angleVar);
-        getX = Math.sin(radians) * velocityVar * timeVar;
-        getY = Math.cos(radians) * velocityVar * timeVar - (.5 * 9.8 * timeVar * timeVar);
-        result.setText(string);
     }
 
     @Override
