@@ -20,46 +20,35 @@
         android:id="@+id/image"
         />
 
-    <TextView android:text="@string/angle"
-        android:layout_width="61dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/angle" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edit_angle"
-        android:inputType="numberDecimal"/>
+        android:inputType="numberDecimal"
+        android:hint="angle"/>
 
-    <TextView android:text="@string/velocity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/velocity" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edit_velocity"
-        android:inputType="numberDecimal"/>
+        android:inputType="numberDecimal"
+        android:hint="velocity"/>
 
-    <TextView android:text="@string/time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/time" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edit_time"
-        android:inputType="numberDecimal"/>
+        android:inputType="numberDecimal"
+        android:hint="angle"/>
 
     <Button android:text="@string/calculate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/calculate" />
 
-    <TextView android:text="@string/result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:id="@+id/result"/>
 
 </LinearLayout>
 </ScrollView>

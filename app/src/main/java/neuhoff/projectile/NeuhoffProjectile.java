@@ -1,6 +1,7 @@
 package neuhoff.projectile;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -15,28 +16,27 @@ import com.squareup.picasso.Picasso;
 
 public class NeuhoffProjectile extends AppCompatActivity {
 
-    private TextView angle, velocity, time, result;
-    private EditText edit_angle, edit_velocity, edit_time;
+    private EditText angle, velocity, time;
     private Button calculate;
     private ImageView image;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+            //needs a name and a mode- restriction
+            preferences = this.getSharedPreferences("default", MODE_PRIVATE);
+
             image = (ImageView) findViewById(R.id.image);
             Picasso.with(this)
                     .load("http://www.shawneekscvb.com/pages/images/542191Baseball.jpg")
                     .into(image);
-            angle = (TextView) findViewById(R.id.angle);
-            velocity = (TextView) findViewById(R.id.velocity);
-            time = (TextView) findViewById(R.id.time);
             calculate = (Button) findViewById(R.id.calculate);
-            result = (TextView) findViewById(R.id.result);
-            edit_angle = (EditText) findViewById(R.id.edit_angle);
-            edit_velocity = (EditText) findViewById(R.id.edit_velocity);
-            edit_time = (EditText) findViewById(R.id.edit_time);
+            angle = (EditText) findViewById(R.id.edit_angle);
+            velocity = (EditText) findViewById(R.id.edit_velocity);
+            time = (EditText) findViewById(R.id.edit_time);
 
 
             calculate.setOnClickListener(new View.OnClickListener() {
@@ -51,11 +51,24 @@ public class NeuhoffProjectile extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //first we want to get values in editText to be able to save them
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("ANGLE", angle.getText().toString());
+        editor.putString("VELOCITY", velocity.getText().toString());
+        editor.putString("TIME", time.getText().toString());
+        editor.apply();
+    }
+
+
+
     private void showAnswer() {
         Intent intent = new Intent(this, AnswerActivity.class);
-        double angle = Double.parseDouble(edit_angle.getText().toString());
-        double velocity = Double.parseDouble(edit_velocity.getText().toString());
-        double time = Double.parseDouble(edit_time.getText().toString());
+        double angle = Double.parseDouble(this.angle.getText().toString());
+        double velocity = Double.parseDouble(this.velocity.getText().toString());
+        double time = Double.parseDouble(this.time.getText().toString());
         intent.putExtra("Angle", angle);
         intent.putExtra("Velocity", velocity);
         intent.putExtra("Time", time);
@@ -65,7 +78,11 @@ public class NeuhoffProjectile extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+
         super.onResume();
+        angle.setText(preferences.getString("ANGLE", ""));
+        velocity.setText(preferences.getString("VELOCITY",""));
+        time.setText(preferences.getString("TIME",""));
     }
 
     @Override
